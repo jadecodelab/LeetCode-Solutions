@@ -1,0 +1,21 @@
+#Given an integer array nums and an integer k
+#find the sum of the subarray with the largest sum whose length is k
+
+def find_best_subarray(nums,k):
+    curr = 0
+    for i in range(k):
+        curr += nums[i]
+
+    ans = curr
+    for i in range(k,len(nums)):
+        curr = curr + nums[i] - nums[i-k]
+        ans = max(ans,curr)
+
+    return ans
+
+# time complexity of O(n), using O(1) space
+
+#Test function
+nums = [1,2,3,4,5]
+k = 3
+print(find_best_subarray(nums,k))
