@@ -1,0 +1,23 @@
+#Given an array of integers nums and an integer target
+#return indices of two numbers such that they add up to target.
+
+from typing import List
+
+def twoSum(nums:List[int],target:int)->List[int]:
+    dic = {}
+    for i in range(len(nums)):
+        num1 = nums[i]
+        num2 = target - num1
+        if num2 in dic:
+            return [i,dic[num2]]
+        dic[num1] = i
+
+    return [-1,-1]
+
+#time complexity O(n)
+#space complexity O(n)
+
+
+nums = [5,2,7,10,3,9]
+target = 1
+print(twoSum(nums,target))
