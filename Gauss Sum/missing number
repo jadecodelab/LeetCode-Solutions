@@ -1,0 +1,18 @@
+#Given an array nums containing n distinct numbers in the range [0, n]
+#return the only number in the range that is missing from the array.
+
+from typing import List
+## Gauss sum solution
+
+def missing_number(nums: List[int])->int:
+    n = len(nums)
+    curr_sum = sum(nums)
+    expected_sum = n*(n+1)//2
+    return expected_sum - curr_sum
+
+# Time complexity: O(n)
+# Space complexity: O(1)
+
+
+nums = [3, 0, 1]
+print(missing_number(nums))
