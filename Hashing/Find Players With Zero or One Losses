@@ -1,0 +1,35 @@
+# You are given an integer array matches where matches[i] = [winneri, loseri] 
+# Return a list answer of size 2 where:
+  ## answer[0] is a list of all players that have not lost any matches.
+  ## answer[1] is a list of all players that have lost exactly one match.
+
+class Solution:
+    def findWinners(self, matches: List[List[int]]) -> List[List[int]]:
+        # initialize a map "losses_count" to track number of losses for each player
+        losses_count = {}
+        
+        # iterate over matches:
+            ## extract winner and loser from the match
+            ## if winner not already present, number of losses = 0
+            ## else increment the number of losses for loser by 1
+        for winner,loser in matches:
+            losses_count[winner] = losses_count.get(winner,0)
+            losses_count[loser] = losses_count.get(loser,0)+1
+            
+        # initialize 2 lists to store player with 0 loss and player with 1 loss
+        zero_lose, one_lose = [],[]
+        
+        # iterate over "losses_count" map:
+            ## if a player's loss count is 0, add player to the first list in "answer"
+            ## if a player's loss count is 1, add player to the 2nd list in "answer"
+        for player,count in losses_count.items():
+            if count == 0:
+                zero_lose.append(player)
+            if count == 1:
+                one_lose.append(player)
+       
+        # return sorted lists
+        return [sorted(zero_lose),sorted(one_lose)]
+        
+        # Time complexity: O(n.logn)
+        # Space complexity: O(n)
