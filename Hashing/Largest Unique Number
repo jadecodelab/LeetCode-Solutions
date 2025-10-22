@@ -1,0 +1,27 @@
+# Given an integer array nums, return the largest integer that only occurs once. If no integer occurs once, return -1.
+
+class Solution:
+    def largestUniqueNumber(self, nums: List[int]) -> int:
+        num_dict = {}
+        
+        # iterate over "nums" list,
+        # each number in "nums" is a key in "num_dict"
+        # the value of each key is the occurrence of each number in "nums"
+        for number in nums:
+            num_dict[number] = num_dict.get(number, 0) + 1
+        
+        # sort the "num_dict" in descending order
+        sorted_num_dict = sorted(num_dict.items(), reverse = True)
+        
+        # the first number that it's freq = 1 is the largest number 
+        # that only occurs once in the list
+        for num, freq in sorted_num_dict:
+            if freq == 1:
+                return num
+        # no number occurs 1
+        return -1
+
+# Time complexity: O(n⋅logn)
+# Space complexity: O(n)
+
+ 
