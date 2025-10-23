@@ -1,0 +1,15 @@
+# Given a string text, you want to use the characters of text to form as many instances of the word "balloon" as possible.
+# You can use each character in text at most once. Return the maximum number of instances that can be formed.
+
+class Solution:
+    def maxNumberOfBalloons(self, text: str) -> int:
+        # initialize an empty dictionary to store the letters and its freqency
+        letter_dict = {}
+        for letter in text:
+            letter_dict[letter] = letter_dict.get(letter,0)+1
+            
+        text = {'b':1,'a':1,'l':2,'o':2,'n':1}
+        return min(letter_dict.get(letter,0)//text[letter] for letter in text)
+
+# O(n) time and O(1) space
+ 
