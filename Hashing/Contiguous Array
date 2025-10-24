@@ -2,7 +2,9 @@
 
 class Solution:
     def findMaxLength(self, nums: List[int]) -> int:
-        # find subarray with equal number of 0 and 1, 
+        # need to find subarray with equal number of 0 and 1,
+        # if 0 -> -1, 1 -> 1, prefix sum of the subarray needed = 0
+        # So, find subarray with prefix sum = 0
         # then return the longest length subarray
         
         first_index = {0:-1} # initialize a dictionary {prefix sum:index}
