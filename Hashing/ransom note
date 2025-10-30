@@ -1,0 +1,24 @@
+# Given two strings ransomNote and magazine, return true if ransomNote can be constructed 
+# by using the letters from magazine and false otherwise.
+# Each letter in magazine can only be used once in ransomNote.
+
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        # check for obvious fail case
+        if len(ransomNote) > len(magazine):
+            return False
+        
+        # use Counter class 
+        letters = collections.Counter(magazine)
+        
+        for c in ransomNote:
+            if letters[c] <= 0:
+                return False
+            letters[c] -= 1
+        
+        return True
+
+
+# m is the length of the magazine
+# Time Complexity : O(m)
+# Space Complexity : O(1)
