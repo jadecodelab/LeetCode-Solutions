@@ -1,0 +1,45 @@
+## Given the head of a sorted linked list, delete all duplicates
+## such that each element appears only once.
+## Return the linked list sorted as well.
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+def create_list(values):
+    if not values:
+        return None
+    head = ListNode(values[0])
+    cur = head
+    for v in values[1: ]:
+        cur.next = ListNode(v)
+        cur = cur.next
+    return head
+
+def print_list(head):
+    while head:
+        print(head.val, end = " -> " if head.next else "\n")
+        head = head.next
+
+## SOLUTION        
+class Solution:
+    def deleteDuplicates(self,head):
+        current = head
+        while current != None and current.next != None:
+            if current.next.val == current.val:
+                current.next = current.next.next
+            else:
+                current = current.next
+
+        return head
+
+## TEST
+head = create_list([1,1,1,2,3,3,4])
+solution = Solution()
+result = solution.deleteDuplicates(head)
+print_list(head)
+
+## Time complexity O(n)
+## Space complexity O(1)
