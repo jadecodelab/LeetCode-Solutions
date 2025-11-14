@@ -1,0 +1,29 @@
+# check valid parentheses (),[],{} 
+
+def isValid(s:str)->bool:
+    stack = []  # initialize a stack to store opening brackets
+
+    # dictionary for matching brackets
+    # key is open bracket, its value is closing bracket
+    matching = {"(": ")","[": "]","{": "}"}
+
+    for c in s:
+        if c in matching:
+            stack.append(c)
+        else:
+            if not stack:   # no opening bracket to match
+                return False
+
+            prev_opening = stack.pop()
+            if matching[prev_opening] != c:
+                return False
+            
+    # after iterating all the characters, if the stack is empty
+    # that means every opening brackets was matched.
+    return not stack
+
+s = "({})"
+if isValid(s):
+    print("This string has valid parenthesis.")
+else:
+    print("Invalid parenthesis.")
