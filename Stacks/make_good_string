@@ -1,0 +1,21 @@
+# A good string is a string which doesn't have two adjacent characters that
+# are the same character with opposite cases
+
+class Solution:
+    def makeGood(self, s: str) -> str:
+        stack = [] # initilize stack to store the letters for good string
+        
+        # the different between lowercase and uppercase of the same letter is 32
+        # so if stack and abs(ord(stack[-1])-ord(c)) == 32
+        # that means they are the same letter in opposite cases
+        # remove them from stack
+        for c in s:
+            if stack and abs(ord(stack[-1])-ord(c)) == 32:
+                stack.pop()
+            # if not the same letters with opposite cases,
+            # add c to stack
+            else:
+                stack.append(c)
+        
+        # connect all the letter in stack to get the good string
+        return "".join(stack)
